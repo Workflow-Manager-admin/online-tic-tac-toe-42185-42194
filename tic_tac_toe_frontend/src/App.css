@@ -1,0 +1,199 @@
+/* CSS Variables for Light Theme */
+:root {
+  --primary: #2196F3;
+  --secondary: #4CAF50;
+  --accent: #FFC107;
+
+  --ttt-bg: #fafcff;
+  --ttt-board-bg: #f6f8fa;
+  --ttt-header-bg: #fff;
+  --ttt-shadow: 0 2px 14px 0 rgba(30,51,87,0.10);
+  --ttt-radius: 18px;
+  --ttt-square-bg: #fff;
+  --ttt-square-border: #e3e9ef;
+
+  --text-primary: #212b36;
+  --text-secondary: #4b6277;
+  --footer-bg: #e6f0fa;
+
+  --transition: 0.2s cubic-bezier(.32,.72,.32,1);
+}
+
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', 'Roboto', Arial, Helvetica, sans-serif;
+  background: var(--ttt-bg);
+  min-height: 100vh;
+}
+
+.ttt-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--ttt-bg);
+}
+
+.ttt-header {
+  margin: 0 0 2rem 0;
+  padding: 2rem 2rem 1.2rem 2rem;
+  background: var(--ttt-header-bg);
+  border-radius: var(--ttt-radius);
+  box-shadow: var(--ttt-shadow);
+  display: flex;
+  gap: 0.7rem;
+  font-size: clamp(2.6rem, 6vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.1;
+  user-select: none;
+}
+
+.ttt-board-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0 1.5rem 0;
+  min-height: 340px;
+}
+
+.ttt-board {
+  background: var(--ttt-board-bg);
+  padding: 12px;
+  border-radius: var(--ttt-radius);
+  box-shadow: var(--ttt-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 335px;
+}
+
+.ttt-board-row {
+  display: flex;
+  gap: 10px;
+}
+
+.ttt-square {
+  width: 88px;
+  height: 88px;
+  background: var(--ttt-square-bg);
+  border: 3px solid var(--ttt-square-border);
+  border-radius: 12px;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--primary);
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 1.5px 7px 0 rgba(180, 202, 237, 0.12);
+  transition: background 0.2s, border 0.2s, transform 0.18s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  user-select: none;
+}
+
+.ttt-square:hover:not(:disabled):not(.filled) {
+  background: #e3f2fd;
+  border-color: var(--primary);
+  transform: scale(1.045);
+}
+
+.ttt-square.filled {
+  cursor: default;
+  color: var(--secondary);
+}
+.ttt-square.filled.X {
+  color: var(--primary);
+}
+.ttt-square.filled.O {
+  color: var(--secondary);
+}
+
+.ttt-animate {
+  animation: ttt-pop 0.22s var(--transition);
+}
+@keyframes ttt-pop {
+  60% { transform: scale(1.18);}
+  100% { transform: scale(1);}
+}
+
+.ttt-status-controls {
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.game-status {
+  font-size: 1.34rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+  user-select: none;
+}
+
+.restart-btn {
+  padding: 0.58em 2.2em;
+  font-size: 1.1rem;
+  font-family: inherit;
+  font-weight: 600;
+  border-radius: 2em;
+  border: none;
+  outline: none;
+  box-shadow: var(--ttt-shadow);
+  background: var(--accent);
+  color: #222;
+  transition: box-shadow 0.18s, background 0.19s;
+  cursor: pointer;
+}
+.restart-btn:hover {
+  background: #ffe184;
+  box-shadow: 0 4px 16px 0 #ffc1073b;
+  color: #111;
+}
+
+.ttt-footer {
+  margin-top: 2.4rem;
+  padding: 1.2rem 0 0.7rem 0;
+  font-size: 0.97rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  width: 100%;
+  text-align: center;
+  background: var(--footer-bg);
+  border-radius: 0 0 var(--ttt-radius) var(--ttt-radius);
+}
+
+@media screen and (max-width: 600px) {
+  .ttt-header {
+    padding: 1.3rem 0.4rem 0.3rem 0.4rem;
+    font-size: 2.1rem;
+  }
+  .ttt-board {
+    min-width: 90vw;
+    padding: 5px;
+  }
+  .ttt-board-row {
+    gap: 4px;
+  }
+  .ttt-square {
+    width: 24vw;
+    height: 24vw;
+    max-width: 82px;
+    max-height: 82px;
+    font-size: 7vw;
+  }
+  .ttt-status-controls {
+    max-width: 98vw;
+  }
+}
